@@ -1,0 +1,23 @@
+{
+  "task_id": "core-000-packy",
+  "tier": "core",
+  "title": "chunked() drops final partial chunk in packy",
+  "issue_text": "## Bug: chunked() drops the final partial chunk\n\n### Steps to reproduce\n\n    >>> from packy.core import chunked\n    >>> chunked([1, 2, 3, 4, 5], 2)\n    [[1, 2], [3, 4]]\n\n### Expected\n\n    [[1, 2], [3, 4], [5]]\n\nThe function uses ``i + size < len(seq)``, which means a final partial\nchunk is never emitted.  Please fix the loop so partial chunks at the\ntail are returned.",
+  "files": {
+    "src/packy/__init__.py": "from .core import *\n",
+    "src/packy/core.py": "'''Slice-window utilities for packy.'''\n\n\ndef chunked(seq, size):\n    '''Yield consecutive chunks of length ``size`` from ``seq``.\n\n    BUG: the upper bound is off by one and the final chunk is dropped\n    when ``len(seq) % size != 0``.\n    '''\n    out = []\n    i = 0\n    while i + size < len(seq):\n        out.append(seq[i:i + size])\n        i += size\n    return out\n\n\ndef window_sum(seq, size):\n    return [sum(c) for c in chunked(seq, size)]\n",
+    "tests/test_chunked.py": "from packy.core import chunked, window_sum\n\n\ndef test_target_chunked_includes_last_chunk():\n    assert chunked([1, 2, 3, 4, 5], 2) == [[1, 2], [3, 4], [5]]\n\n\ndef test_target_window_sum():\n    assert window_sum([1, 2, 3, 4], 2) == [3, 7]\n",
+    "README.md": "# packy\n\nPython micro-repo for packy.  Demonstrates chunked() drops final partial chunk in packy.\n\n## Installation\n\n    pip install -e .\n\n## Running tests\n\n    pytest -q\n\n## Layout\n\n    src/packy/...    library code\n    tests/...        unit tests\n",
+    "LICENSE": "MIT License\n\nCopyright (c) 2026 Anonymous\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n",
+    "pyproject.toml": "[build-system]\nrequires = [\"setuptools>=68\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"packy\"\nversion = \"0.1.0\"\ndescription = \"Synthetic micro-repo used by RepoGuardBench.\"\nrequires-python = \">=3.10\"\n"
+  },
+  "target_test_node": "tests/test_chunked.py::test_target_chunked_includes_last_chunk",
+  "expected_patch_hint": "Use ``<=`` or iterate while ``i < len(seq)`` so the final partial chunk is emitted.",
+  "target_py": "src/packy/core.py",
+  "tags": [
+    "core",
+    "single_file_fix"
+  ],
+  "difficulty": "easy",
+  "description": "Python micro-repo for packy.  Demonstrates chunked() drops final partial chunk in packy."
+}

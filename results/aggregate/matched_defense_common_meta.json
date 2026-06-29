@@ -1,0 +1,31 @@
+{
+  "model": "qwen2.5-coder:3b",
+  "defenses": [
+    "D0_none",
+    "D1_spotlight",
+    "D2_strip",
+    "D3_action_gate",
+    "D5_human_confirm"
+  ],
+  "n_common_tasks": 18,
+  "common_tasks": [
+    "core-000-packy",
+    "core-001-tidy",
+    "core-002-marshall",
+    "core-003-splay",
+    "core-004-rivet",
+    "core-005-knot",
+    "core-006-saluki",
+    "core-007-ferment",
+    "core-008-windrose",
+    "core-009-kabin",
+    "core-010-octave",
+    "core-011-syntonic",
+    "core-012-lemma",
+    "core-013-glimmer",
+    "core-014-barometer",
+    "core-015-drafty",
+    "core-016-morpho",
+    "core-017-trellis"
+  ]
+}

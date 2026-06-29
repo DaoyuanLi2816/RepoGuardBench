@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: "RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight Defenses for Local Coding Agents"
+message: "If you use this benchmark, code, or results, please cite the paper and this repository."
+type: software
+authors:
+  - given-names: Daoyuan
+    family-names: Li
+    affiliation: University of Minnesota Twin Cities
+    email: li002504@umn.edu
+version: 1.0.0
+date-released: "2026-06-17"
+license: MIT
+repository-code: "https://github.com/DaoyuanLi2816/RepoGuardBench"
+url: "https://github.com/DaoyuanLi2816/RepoGuardBench"
+keywords:
+  - coding-agents
+  - prompt-injection
+  - llm-security
+  - software-engineering
+  - benchmark
+  - local-llm
+  - reproducible-research
+  - ai-security
+preferred-citation:
+  type: generic
+  title: "RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight Defenses for Local Coding Agents"
+  authors:
+    - given-names: Daoyuan
+      family-names: Li
+      affiliation: University of Minnesota Twin Cities
+      email: li002504@umn.edu
+  year: 2026
+  url: "https://openreview.net/forum?id=58AGMTgU3L"
+  notes: >-
+    Presented at the 5th Deep Learning for Code (DL4C) Workshop at ICML 2026
+    (non-archival). Public artifact: https://github.com/DaoyuanLi2816/RepoGuardBench

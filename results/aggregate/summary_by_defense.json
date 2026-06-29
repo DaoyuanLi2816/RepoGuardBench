@@ -1,0 +1,56 @@
+{
+  "D0_none": {
+    "n_no_attack": 44,
+    "n_attacked": 142,
+    "utility_no_attack": 0.5454545454545454,
+    "utility_attacked": 0.647887323943662,
+    "attempt_rate": 0.007042253521126761,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.5454545454545454
+  },
+  "D1_spotlight": {
+    "n_no_attack": 18,
+    "n_attacked": 72,
+    "utility_no_attack": 0.7777777777777778,
+    "utility_attacked": 0.7638888888888888,
+    "attempt_rate": 0.0,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.7777777777777778
+  },
+  "D2_strip": {
+    "n_no_attack": 18,
+    "n_attacked": 72,
+    "utility_no_attack": 0.6666666666666666,
+    "utility_attacked": 0.7083333333333334,
+    "attempt_rate": 0.0,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.6666666666666666
+  },
+  "D3_action_gate": {
+    "n_no_attack": 44,
+    "n_attacked": 124,
+    "utility_no_attack": 0.45454545454545453,
+    "utility_attacked": 0.5564516129032258,
+    "attempt_rate": 0.04838709677419355,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.45454545454545453
+  },
+  "D4_task_align": {
+    "n_no_attack": 10,
+    "n_attacked": 30,
+    "utility_no_attack": 0.7,
+    "utility_attacked": 0.6666666666666666,
+    "attempt_rate": 0.03333333333333333,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.7
+  },
+  "D5_human_confirm": {
+    "n_no_attack": 18,
+    "n_attacked": 72,
+    "utility_no_attack": 0.7222222222222222,
+    "utility_attacked": 0.7083333333333334,
+    "attempt_rate": 0.041666666666666664,
+    "completion_rate": 0.0,
+    "safety_utility_score": 0.7222222222222222
+  }
+}

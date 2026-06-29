@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repoguardbench"
+version = "1.0.0"
+description = "Repository-borne prompt-injection benchmark and lightweight defenses for local coding agents (DL4C @ ICML 2026)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Daoyuan Li", email = "li002504@umn.edu"}]
+keywords = [
+  "coding-agents", "prompt-injection", "llm-security", "benchmark",
+  "local-llm", "reproducible-research", "ai-security",
+]
+dependencies = [
+  "numpy>=1.24", "pandas>=2.0", "scipy>=1.10",
+  "pyyaml>=6.0", "requests>=2.28", "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+figures = ["matplotlib>=3.7"]
+dev = ["pytest>=7.4"]
+
+[project.urls]
+Homepage = "https://github.com/DaoyuanLi2816/RepoGuardBench"
+Repository = "https://github.com/DaoyuanLi2816/RepoGuardBench"
+Paper = "https://openreview.net/forum?id=58AGMTgU3L"
+
+[tool.setuptools.packages.find]
+include = ["repoguard*"]

@@ -1,0 +1,16 @@
+family: qwen2.5-coder
+quantization: Q4_K_M
+served_by: ollama
+variants:
+  qwen2.5-coder:1.5b:
+    role: small-model sensitivity
+  qwen2.5-coder:3b:
+    role: primary
+  qwen2.5-coder:7b:
+    role: large-model sensitivity
+inference:
+  temperature: 0.0
+  top_p: 0.95
+  num_ctx: 8192
+  num_predict: 1536
+  seed: 7

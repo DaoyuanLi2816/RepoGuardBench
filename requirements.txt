@@ -1,0 +1,10 @@
+# Runtime + reproduction dependencies for RepoGuardBench.
+# Pinned with lower bounds; CI installs these on Python 3.10-3.12.
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+pyyaml>=6.0
+matplotlib>=3.7      # only needed for `make reproduce-figures`
+requests>=2.28       # only needed for the local Ollama backend
+tqdm>=4.65
+pytest>=7.4

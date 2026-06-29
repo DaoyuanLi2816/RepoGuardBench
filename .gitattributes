@@ -1,0 +1,8 @@
+# Normalize line endings: store text as LF in the repository.
+* text=auto eol=lf
+
+# Treat these as binary (no EOL conversion / no diff).
+*.pdf binary
+*.png binary
+*.gguf binary
+*.zip binary

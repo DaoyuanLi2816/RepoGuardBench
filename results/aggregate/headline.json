@@ -1,0 +1,51 @@
+{
+  "n_runs": 2340,
+  "n_unique_tasks": 60,
+  "n_no_attack": 584,
+  "n_attacked": 1756,
+  "models": [
+    "deepseek-coder:6.7b-instruct",
+    "llama3.1:8b",
+    "qwen2.5-coder:1.5b",
+    "qwen2.5-coder:14b",
+    "qwen2.5-coder:3b",
+    "qwen2.5-coder:7b",
+    "starcoder2:3b"
+  ],
+  "defenses": [
+    "D0_none",
+    "D1_spotlight",
+    "D2_strip",
+    "D3_action_gate",
+    "D3np_action_gate_silent",
+    "D4_task_align",
+    "D5_human_confirm",
+    "D5np_confirm_silent"
+  ],
+  "carriers": [
+    "code_comment",
+    "issue",
+    "readme",
+    "rule_file",
+    "test_log"
+  ],
+  "tiers": [
+    "core",
+    "real"
+  ],
+  "overall_utility_no_attack": 0.6541095890410958,
+  "overall_utility_attacked": 0.5546697038724373,
+  "overall_attempt_rate": 0.3428246013667426,
+  "overall_blocked_rate": 0.24943052391799544,
+  "overall_landed_rate": 0.08143507972665148,
+  "overall_completion_rate": 0.021070615034168565,
+  "matched_util_delta_mean": -0.1250261904761905,
+  "matched_util_delta_lo": -0.16249863095238096,
+  "matched_util_delta_hi": -0.0854566666666667,
+  "matched_attempt_mean": 0.34904761904761905,
+  "matched_landed_mean": 0.08808333333333333,
+  "matched_complete_mean": 0.02125,
+  "mean_wall_clock_s": 8.541564849299244,
+  "parser_failure_rate": 0.03717948717948718,
+  "environment_failure_rate": 0.0
+}

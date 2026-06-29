@@ -1,0 +1,59 @@
+# Source of truth for the balanced fractional experiment grid.
+# See scripts/run_main.py for the executable spec.
+
+phases:
+  - name: phase1_primary
+    description: >
+      Deep sweep on the primary model.  Covers all defenses x 4 carriers
+      x 18 core tasks + matched no-attack baselines.
+    models: [qwen2.5-coder:3b]
+    defenses: [D0_none, D1_spotlight, D2_strip, D3_action_gate, D5_human_confirm]
+    carriers: [readme, issue, code_comment, rule_file]
+    tier: core
+    limit: 18
+    max_turns: 4
+
+  - name: phase2_models
+    description: >
+      Model-sensitivity sweep on a smaller carrier x defense subset.
+    models: [qwen2.5-coder:1.5b, qwen2.5-coder:7b]
+    defenses: [D0_none, D3_action_gate]
+    carriers: [issue, rule_file]
+    tier: core
+    limit: 8
+    max_turns: 4
+
+  - name: phase3_real
+    description: >
+      External validity on the Real tier.
+    models: [qwen2.5-coder:3b]
+    defenses: [D0_none, D3_action_gate]
+    carriers: [issue, rule_file]
+    tier: real
+    limit: 10
+    max_turns: 4
+
+  - name: phase4_carrier_extra
+    description: >
+      Adds the test_log carrier on primary model to complete the
+      carrier ablation.
+    models: [qwen2.5-coder:3b]
+    defenses: [D0_none]
+    carriers: [test_log]
+    tier: core
+    limit: 18
+    max_turns: 4
+
+inference:
+  backend: ollama
+  endpoint: http://localhost:11434
+  temperature: 0.0
+  top_p: 0.95
+  num_ctx: 8192
+  num_predict: 1536
+  seed: 7
+  repeat_penalty: 1.05
+
+scoring:
+  primary_metrics: [utility, attack_attempted, attack_completed]
+  confidence: wilson_95
