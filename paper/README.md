@@ -8,7 +8,7 @@ Daoyuan Li (University of Minnesota Twin Cities).
 - OpenReview: https://openreview.net/forum?id=58AGMTgU3L
 - BibTeX: [`citation.bib`](citation.bib)
 
-Presented at the **5th Deep Learning for Code (DL4C) Workshop at ICML 2026**.
+Accepted at the **5th Deep Learning for Code (DL4C) Workshop at ICML 2026**.
 DL4C is a **non-archival** workshop: this paper is **not** part of the ICML
 main-conference PMLR proceedings. Please cite it as a workshop presentation
 (`@misc`), not as a PMLR `@inproceedings` entry.

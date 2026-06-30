@@ -16,7 +16,7 @@ fully locally on a single consumer GPU — **no data leaves your machine** —
 and ships a deterministic, GPU-free smoke test so you can verify the whole
 pipeline in seconds.
 
-- **Paper:** *RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight Defenses for Local Coding Agents* — Daoyuan Li (University of Minnesota Twin Cities). Presented at the **5th Deep Learning for Code (DL4C) Workshop at ICML 2026** (non-archival).
+- **Paper:** *RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight Defenses for Local Coding Agents* — Daoyuan Li (University of Minnesota Twin Cities). Accepted at the **5th Deep Learning for Code (DL4C) Workshop at ICML 2026** (non-archival).
 - **OpenReview:** https://openreview.net/forum?id=58AGMTgU3L
 - **Try it now (no GPU, no API):** `make setup && make smoke`
 
