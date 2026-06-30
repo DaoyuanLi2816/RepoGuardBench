@@ -148,7 +148,7 @@ See [`CITATION.cff`](CITATION.cff) / [`paper/citation.bib`](paper/citation.bib):
             Lightweight Defenses for Local Coding Agents},
   author = {Li, Daoyuan},
   year   = {2026},
-  note   = {Presented at the 5th Deep Learning for Code (DL4C) Workshop at ICML 2026}
+  note   = {Accepted at the 5th Deep Learning for Code (DL4C) Workshop at ICML 2026}
 }
 ```
 DL4C is non-archival — please cite as a workshop presentation, **not** as a
