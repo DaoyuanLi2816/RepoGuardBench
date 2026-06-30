@@ -19,9 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-----------------------------------------------------------------------------
-Scope: This MIT license covers the original SOURCE CODE in this repository
-(the `repoguard/` package, `scripts/`, `tests/`, configuration, and build
-files).  The benchmark DATA and aggregate RESULTS are licensed separately
-under CC BY 4.0 -- see LICENSE-DATA.
