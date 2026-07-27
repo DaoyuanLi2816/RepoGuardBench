@@ -3,6 +3,23 @@
 All notable changes to RepoGuardBench are documented here. This project
 adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-07-26
+
+Reproducibility and workflow-hardening release.
+
+### Added
+- Executable verification of the camera-ready headline, carrier, scaling,
+  defense, closed-model-reference, benchmark-size, and paper-hash claims.
+- Paper-to-artifact map and regression tests for release workflows.
+- Cross-platform Python selection for the full experiment driver.
+
+### Fixed
+- No-GPU smoke and subset scoring now keep audit outputs beside the requested
+  scored file instead of overwriting the committed paper audit.
+
+Published benchmark definitions, scored streams, aggregates, and paper numbers
+are unchanged.
+
 ## [1.0.0] — 2026-06-17
 
 Initial public release: the camera-ready artifact for the DL4C @ ICML 2026

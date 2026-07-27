@@ -27,6 +27,18 @@ def _py() -> str:
     return str(venv) if venv.exists() else sys.executable
 
 
+def _audit_command(py: str, raw: Path, scored: Path,
+                   smoke: Path) -> list[str]:
+    """Build an audit command whose side outputs stay inside the smoke dir."""
+    return [
+        py, str(REPO / "scripts" / "audit_scoring.py"),
+        "--raw", str(raw),
+        "--out", str(scored),
+        "--audit", str(smoke / "scoring_audit.csv"),
+        "--report", str(smoke / "scoring_audit.md"),
+    ]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="mock",
@@ -64,8 +76,7 @@ def main() -> int:
     ], check=True)
 
     # 2) Score (adds the seven independent metrics).
-    subprocess.run([py, str(REPO / "scripts" / "audit_scoring.py"),
-                    "--raw", str(raw), "--out", str(scored)], check=True)
+    subprocess.run(_audit_command(py, raw, scored, smoke), check=True)
 
     # 3) Aggregate (matched + marginal pivots, Wilson/bootstrap CIs).
     subprocess.run([py, str(REPO / "scripts" / "aggregate_results.py"),

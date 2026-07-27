@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "repoguardbench"
-version = "1.0.0"
+version = "1.1.0"
 description = "Repository-borne prompt-injection benchmark and lightweight defenses for local coding agents (DL4C @ ICML 2026)."
 readme = "README.md"
 requires-python = ">=3.10"

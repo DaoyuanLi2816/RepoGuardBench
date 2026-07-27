@@ -18,6 +18,7 @@ pipeline in seconds.
 
 - **Paper:** *RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight Defenses for Local Coding Agents* — Daoyuan Li (University of Minnesota Twin Cities). Accepted at the **5th Deep Learning for Code (DL4C) Workshop at ICML 2026** (non-archival).
 - **OpenReview:** https://openreview.net/forum?id=58AGMTgU3L
+- **Paper-to-artifact map:** [`docs/PAPER_TO_ARTIFACT.md`](docs/PAPER_TO_ARTIFACT.md)
 - **Try it now (no GPU, no API):** `make setup && make smoke`
 
 ## Key findings
@@ -72,6 +73,7 @@ paper/          final camera-ready PDF + citation
 make setup        # install deps + the repoguard package (editable)
 make test         # unit tests (no GPU, no network)
 make smoke        # full pipeline end-to-end with a deterministic MOCK backend
+make verify-paper # verify published claims from the bundled results
 ```
 
 `make smoke` requires **no GPU, no Ollama, and no commercial API**: it
@@ -87,6 +89,7 @@ make smoke-local MODEL=qwen2.5-coder:1.5b
 
 ### Reproduce the paper's tables and figures (from bundled aggregates)
 ```bash
+make verify-paper
 make reproduce-tables     # -> reproduced/tables/*.tex
 make reproduce-figures    # -> reproduced/figures/*.pdf
 ```
@@ -135,8 +138,9 @@ See [`docs/SECURITY_AND_ETHICS.md`](docs/SECURITY_AND_ETHICS.md) and
 ## Testing & CI
 
 GitHub Actions runs unit tests, the no-GPU mock smoke, table regeneration from
-bundled aggregates, and a secret/path/PII release scan (`make check-release`)
-across Python 3.10–3.12 — with no model weights and no secrets.
+bundled aggregates, paper-claim verification, and a secret/path/PII release
+scan (`make check-release`) across Python 3.10–3.12 — with no model weights and
+no secrets.
 
 ## Citation
 

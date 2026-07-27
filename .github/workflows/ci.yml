@@ -30,5 +30,7 @@ jobs:
         run: python scripts/smoke.py
       - name: Reproduce tables from bundled aggregates
         run: python scripts/make_tables.py --agg results/aggregate --out reproduced/tables
+      - name: Verify paper claims from bundled results
+        run: python scripts/verify_paper_claims.py
       - name: Release scan (secrets / paths / weights)
         run: python scripts/check_release.py .

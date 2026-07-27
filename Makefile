@@ -5,7 +5,7 @@ PY ?= python
 MODEL ?= qwen2.5-coder:1.5b
 
 .PHONY: help setup test smoke smoke-local build-benchmark aggregate \
-        reproduce-tables reproduce-figures check-release clean
+        reproduce-tables reproduce-figures verify-paper check-release clean
 
 help:
 	@echo "Targets:"
@@ -15,6 +15,7 @@ help:
 	@echo "  smoke-local        smoke with a local Ollama model (MODEL=...)"
 	@echo "  reproduce-tables   regenerate paper tables from bundled aggregates"
 	@echo "  reproduce-figures  regenerate paper figures from bundled aggregates"
+	@echo "  verify-paper       verify paper headline claims from bundled results"
 	@echo "  aggregate          rebuild aggregates from results/scored/main.jsonl"
 	@echo "  check-release      run the secret/path/PII release scanner"
 	@echo "  clean              remove regenerated outputs"
@@ -47,6 +48,9 @@ reproduce-tables:
 
 reproduce-figures:
 	$(PY) scripts/make_figures.py --agg results/aggregate --out reproduced/figures
+
+verify-paper:
+	$(PY) scripts/verify_paper_claims.py
 
 check-release:
 	$(PY) scripts/check_release.py .

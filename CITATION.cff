@@ -7,8 +7,8 @@ authors:
     family-names: Li
     affiliation: University of Minnesota Twin Cities
     email: li002504@umn.edu
-version: 1.0.0
-date-released: "2026-06-17"
+version: 1.1.0
+date-released: "2026-07-26"
 license: MIT
 repository-code: "https://github.com/DaoyuanLi2816/RepoGuardBench"
 url: "https://github.com/DaoyuanLi2816/RepoGuardBench"

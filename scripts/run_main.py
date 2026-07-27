@@ -1,8 +1,4 @@
-"""Drive the main experiment in three phases.
-
-Phase 1 (deep, primary model): 3B model x 5 defenses x 4 carriers x 18 core tasks.
-Phase 2 (model sensitivity): 1.5B and 7B x 3 defenses x 3 carriers x 12 core tasks.
-Phase 3 (Real-tier external validity): 3B x 3 defenses x 3 carriers x 12 real tasks.
+"""Drive the paper experiment phases.
 
 All phases share the same JSONL so the aggregator just reads one file.
 Each phase is resumable.
@@ -157,8 +153,18 @@ PHASES = [
 ]
 
 
+def python_executable() -> str:
+    """Use an active interpreter on every OS, preferring a local virtualenv."""
+    candidates = [
+        REPO / ".venv" / "Scripts" / "python.exe",
+        REPO / ".venv" / "bin" / "python",
+    ]
+    return str(next((path for path in candidates if path.exists()),
+                    Path(sys.executable)))
+
+
 def run_phase(p: dict, out_path: Path, logs_path: Path) -> None:
-    py = str(REPO / ".venv" / "Scripts" / "python.exe")
+    py = python_executable()
     cmd = [py, str(REPO / "scripts" / "run_experiments.py"),
            "--out", str(out_path),
            "--logs", str(logs_path),

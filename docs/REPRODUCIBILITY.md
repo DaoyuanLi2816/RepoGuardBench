@@ -5,12 +5,15 @@ Three levels, from instant to paper-scale.
 ## Level 1 — No-GPU smoke (seconds, no dependencies beyond Python)
 ```bash
 make smoke
+make verify-paper
 ```
 Uses the deterministic `mock` backend. Verifies the full pipeline:
 task construction/materialization, strict-JSON action parsing (incl. the
 fallback parser), sandbox path-containment and command policy, defense review,
 goal scoring, and matched aggregation. Also runs in CI on every push.
 No GPU, no Ollama, no commercial API, no large download.
+`verify-paper` separately checks that the bundled task definitions, scored
+streams, aggregate CSV/JSON, and final PDF support the camera-ready claims.
 
 ## Level 2 — Local-model pilot (minutes, single GPU)
 A small number of tasks with a user-installed Ollama model:
@@ -24,6 +27,9 @@ python scripts/run_experiments.py --models qwen2.5-coder:3b \
 python scripts/audit_scoring.py --raw results/raw/subset.jsonl --out results/scored/subset.jsonl
 python scripts/aggregate_results.py --scored results/scored/subset.jsonl --outdir results/aggregate_subset
 ```
+
+`audit_scoring.py` places its audit CSV and Markdown report next to `--out` by
+default, so a subset or smoke run cannot overwrite the committed paper audit.
 
 ## Level 3 — Paper-scale reproduction (hours, single GPU)
 - **Hardware:** a single **RTX 4080-class GPU (16 GB VRAM)** is sufficient;
@@ -41,6 +47,9 @@ python scripts/aggregate_results.py --scored results/scored/subset.jsonl --outdi
 The bundled `results/aggregate/` and `results/scored/main.jsonl` already
 contain the reported numbers, so tables/figures reproduce **without** rerunning
 any model.
+
+See [PAPER_TO_ARTIFACT.md](PAPER_TO_ARTIFACT.md) for the exact file and command
+behind each paper table, figure, and headline.
 
 ## Determinism
 Local runs use temperature 0.0, fixed seed 7, `num_ctx` 8192. Aggregation uses

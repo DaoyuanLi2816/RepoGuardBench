@@ -1,11 +1,10 @@
 """Re-score every raw record using the precise semantics.
 
 Inputs:  results/raw/main.jsonl, data/repoguardbench_*.jsonl
-Outputs: results/scored/main.jsonl  (one record per input row, with
-         seven explicit metrics replacing the legacy attack_*
-         fields)
-         results/aggregate/scoring_audit.csv  (changes vs legacy)
-         logs/scoring_audit.md  (narrative report)
+Outputs: the requested scored JSONL (one record per input row, with seven
+         explicit metrics replacing the legacy attack_* fields), plus an audit
+         CSV and Markdown report next to that scored file unless explicitly
+         overridden.
 
 We do NOT touch the raw records.  All downstream aggregation reads
 from results/scored.
@@ -175,9 +174,26 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw", default=str(REPO / "results" / "raw" / "main.jsonl"))
     ap.add_argument("--out", default=str(REPO / "results" / "scored" / "main.jsonl"))
-    ap.add_argument("--audit", default=str(REPO / "results" / "aggregate" / "scoring_audit.csv"))
-    ap.add_argument("--report", default=str(REPO / "logs" / "scoring_audit.md"))
+    ap.add_argument(
+        "--audit",
+        default=None,
+        help="audit CSV path (default: next to --out as <stem>.audit.csv)",
+    )
+    ap.add_argument(
+        "--report",
+        default=None,
+        help="audit Markdown path (default: next to --out as <stem>.audit.md)",
+    )
     args = ap.parse_args()
+    scored_path = Path(args.out)
+    audit_path = (
+        Path(args.audit) if args.audit
+        else scored_path.with_name(scored_path.stem + ".audit.csv")
+    )
+    report_path = (
+        Path(args.report) if args.report
+        else scored_path.with_name(scored_path.stem + ".audit.md")
+    )
 
     tasks: Dict[str, Task] = {}
     for p in (REPO / "data" / "repoguardbench_core.jsonl",
@@ -187,7 +203,7 @@ def main() -> int:
                 tasks[t.task_id] = t
 
     scored = rescore(Path(args.raw), tasks)
-    write_jsonl(args.out, scored)
+    write_jsonl(scored_path, scored)
 
     audit_rows = []
     changes = Counter()
@@ -209,8 +225,8 @@ def main() -> int:
             "landed_new": landed, "blocked_new": blocked,
         })
 
-    Path(args.audit).parent.mkdir(parents=True, exist_ok=True)
-    with open(args.audit, "w", encoding="utf-8") as fh:
+    audit_path.parent.mkdir(parents=True, exist_ok=True)
+    with audit_path.open("w", encoding="utf-8") as fh:
         fh.write("task_id,model,defense,carrier,goal,seed,no_attack,"
                  "attempt_old,attempt_new,completed_old,completed_new,landed_new,blocked_new\n")
         for r in audit_rows:
@@ -226,8 +242,8 @@ def main() -> int:
     new_blocked = sum(1 for r in scored if r.get("unsafe_action_blocked"))
     new_complete = sum(1 for r in scored if r.get("attack_completed"))
 
-    Path(args.report).parent.mkdir(parents=True, exist_ok=True)
-    with open(args.report, "w", encoding="utf-8") as fh:
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    with report_path.open("w", encoding="utf-8") as fh:
         fh.write(f"# Scoring audit\n\nRescored {n} raw runs against the new semantics.\n\n")
         fh.write(f"- attempt label changed for {n_att_changed} runs\n")
         fh.write(f"- completion label changed for {n_cmp_changed} runs\n")
