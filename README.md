@@ -21,6 +21,15 @@ pipeline in seconds.
 - **Paper-to-artifact map:** [`docs/PAPER_TO_ARTIFACT.md`](docs/PAPER_TO_ARTIFACT.md)
 - **Try it now (no GPU, no API):** `make setup && make smoke`
 
+## Poster
+
+The poster gives a one-page view of the threat model, benchmark pipeline, and
+main results: susceptibility rises with model capability, code comments and
+agent-rule files are the strongest carriers, and path-based gates can miss
+semantic test deletion. Click the image for the full-resolution 4096×2304 PNG.
+
+[![RepoGuardBench research poster](paper/poster.png)](paper/poster.png)
+
 ## Key findings
 
 | Finding | Evidence (from the paper's matched analysis) |

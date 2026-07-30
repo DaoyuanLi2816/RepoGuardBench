@@ -5,6 +5,7 @@ Defenses for Local Coding Agents**
 Daoyuan Li (University of Minnesota Twin Cities).
 
 - Final camera-ready PDF: [`main.pdf`](main.pdf)
+- Research poster (4096×2304 PNG): [`poster.png`](poster.png)
 - OpenReview: https://openreview.net/forum?id=58AGMTgU3L
 - BibTeX: [`citation.bib`](citation.bib)
 - SHA-256: [`SHA256SUMS`](SHA256SUMS)
