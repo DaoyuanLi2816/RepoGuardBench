@@ -9,7 +9,7 @@ content tries to redirect them.**
 [![Code license](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 [![Data license](https://img.shields.io/badge/data-CC%20BY%204.0-green.svg)](LICENSE-DATA)
 
-> **ICML 2026 workshop paper (non-archival).**
+> **ICML 2026 workshop paper.**
 > *RepoGuardBench: Repository-Borne Prompt Injection Attacks and Lightweight
 > Defenses for Local Coding Agents* was accepted at the 5th Deep Learning for
 > Code (DL4C) Workshop.
